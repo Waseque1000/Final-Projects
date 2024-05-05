@@ -6,8 +6,11 @@ const NavBar = () => {
       <li>
         <Link to={"/"}>Home </Link>
       </li>
-      <li>
+      <li className="text-white">
         <Link to={"/menu"}>Our Menu </Link>
+      </li>
+      <li className="text-white">
+        <Link to={"/order"}>Order</Link>
       </li>
     </>
   );
