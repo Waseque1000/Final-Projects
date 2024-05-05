@@ -24,11 +24,6 @@ const PopulerMenu = () => {
         subHeading={"Check it  out "}
         heading={"From our menu"}
       ></SectionTitle>
-      <div className="grid md:grid-cols-2 gap-4">
-        {popular.map((item) => (
-          <MenuItems item={item} key={item._id}></MenuItems>
-        ))}
-      </div>
     </section>
   );
 };
