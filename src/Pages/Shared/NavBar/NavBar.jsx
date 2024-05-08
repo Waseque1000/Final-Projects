@@ -12,6 +12,12 @@ const NavBar = () => {
       <li className="text-white">
         <Link to={"/order/salad"}>Order</Link>
       </li>
+      <li className="text-white active:text-white">
+        <Link to={"/login"}>Log In</Link>
+      </li>
+      <li className="text-white">
+        <Link to={"/signup"}>Sign Up</Link>
+      </li>
     </>
   );
   return (
