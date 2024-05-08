@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import img from "../../assets/others/authentication1.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
@@ -8,7 +8,11 @@ import Swal from "sweetalert2";
 
 //
 const SignUp = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateProfileUser } = useContext(AuthContext);
+
+  //
+  const navigate = useNavigate();
+  //
   const {
     register,
     handleSubmit,
@@ -18,15 +22,24 @@ const SignUp = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    createUser(data.email, data.password)
+    createUser(data.email, data.password, data.name, data.photoUrl)
       .then((result) => {
         const loggedUser = result.user;
+        reset();
         console.log(loggedUser);
         Swal.fire({
           title: "Successfully Sign In",
-          text: "That thing is still around?",
-          icon: "question",
+          text: "Welcome to Bistro Boss",
+          icon: "success",
         });
+        updateProfileUser(data.name, data.photoUrl)
+          .then(() => {
+            console.log("user updated");
+            navigate("/");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
       .catch((error) => {
         console.log(error.massage);
@@ -56,6 +69,18 @@ const SignUp = () => {
                   {...register("name")}
                   name="name"
                   placeholder="name"
+                  className="input input-bordered"
+                  required
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo Url </span>
+                </label>
+                <input
+                  type="text"
+                  {...register("photoUrl")}
+                  placeholder="Photo Url"
                   className="input input-bordered"
                   required
                 />
@@ -92,7 +117,7 @@ const SignUp = () => {
                   // disabled={disabled}
                   type="submit"
                   className="btn btn-primary"
-                  value="Log in "
+                  value="Sign Up "
                 />
               </div>
               <p>
