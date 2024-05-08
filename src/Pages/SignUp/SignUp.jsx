@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
+//
 const SignUp = () => {
   const { createUser } = useContext(AuthContext);
   const {
@@ -20,6 +22,11 @@ const SignUp = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        Swal.fire({
+          title: "Successfully Sign In",
+          text: "That thing is still around?",
+          icon: "question",
+        });
       })
       .catch((error) => {
         console.log(error.massage);

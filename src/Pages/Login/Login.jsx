@@ -9,7 +9,8 @@ import {
 import { AuthContext } from "../../Provider/AuthProvider";
 
 import img from "../../assets/others/authentication1.png";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 //
 
 const Login = () => {
@@ -21,6 +22,12 @@ const Login = () => {
 
   //
   const captcahRef = useRef(null);
+
+  //
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
   //
   const handleLogin = (event) => {
     event.preventDefault();
@@ -31,6 +38,14 @@ const Login = () => {
     logInUser(email, password)
       .then((result) => {
         const user = result.user;
+        Swal.fire({
+          title: "Login Successful",
+          text: "That thing is still around?",
+          icon: "success",
+        });
+
+        // ? navigate
+        navigate(from, { replace: true });
         console.log(user);
       })
       .catch((error) => {
@@ -42,10 +57,10 @@ const Login = () => {
     loadCaptchaEnginge(6);
   }, []);
 
-  // validate
-  const handleValidateCaptcha = (event) => {
+  // ! validate
+  const handleValidateCaptcha = (e) => {
     const userCaptureValue = captcahRef.current.value;
-    if (validateCaptcha(userCaptureValue) == true) {
+    if (validateCaptcha(userCaptureValue) === true) {
       setDisabled(false);
     } else {
       setDisabled(true);
@@ -104,17 +119,18 @@ const Login = () => {
                 className="input input-bordered"
                 required
               />
+              <button
+                onClick={handleValidateCaptcha}
+                className="btn btn-outline btn-xs mt-2"
+              >
+                Validate
+              </button>
             </div>
-            <button
-              onClick={handleValidateCaptcha}
-              className="btn btn-outline btn-xs mt-2"
-            >
-              Validate
-            </button>
+
             <div className="form-control mt-6">
               <input
-                disabled={disabled}
                 type="submit"
+                disabled={disabled}
                 className="btn btn-primary"
                 value="Log in "
               />
