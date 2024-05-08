@@ -117,7 +117,6 @@ const Login = () => {
                 placeholder="Captcha"
                 name="captcha"
                 className="input input-bordered"
-                required
               />
               <button
                 onClick={handleValidateCaptcha}
@@ -129,8 +128,9 @@ const Login = () => {
 
             <div className="form-control mt-6">
               <input
+                // TODO: waiting
                 type="submit"
-                disabled={disabled}
+                // disabled={disabled}
                 className="btn btn-primary"
                 value="Log in "
               />

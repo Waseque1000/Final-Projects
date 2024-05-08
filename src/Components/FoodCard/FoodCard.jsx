@@ -1,9 +1,60 @@
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
+
 const FoodCard = ({ item }) => {
-  const { name, recipe, price, image } = item;
+  const { name, recipe, price, image, _id } = item;
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  // ?
+  const { user } = useContext(AuthContext);
   //   console.log(item);
 
   const handleAddToCart = (item) => {
     console.log(item);
+    if (user && user.email) {
+      //
+      const cartItem = {
+        menuItemId: _id,
+        name,
+        price,
+        image,
+        email: user.email,
+      };
+
+      fetch("http://localhost:5000/carts", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(cartItem),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            Swal.fire({
+              title: "Food Added On the Cart ",
+              text: "Welcome to Bistro Boss",
+              icon: "success",
+            });
+          }
+        });
+    } else {
+      Swal.fire({
+        title: "Please Login to Order Food ",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Log In Now",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login", { state: { from: location } });
+        }
+      });
+    }
   };
   return (
     <div>
