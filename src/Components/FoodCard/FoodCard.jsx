@@ -13,7 +13,7 @@ const FoodCard = ({ item }) => {
   //   console.log(item);
 
   const handleAddToCart = (item) => {
-    console.log(item);
+    // console.log(item);
     if (user && user.email) {
       //
       const cartItem = {
