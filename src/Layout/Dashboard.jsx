@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 import {
   FaBeer,
@@ -10,6 +10,7 @@ import {
 import { FaBagShopping, FaBookTanakh, FaShop } from "react-icons/fa6";
 import { TiThMenu } from "react-icons/ti";
 import { AiOutlineMail } from "react-icons/ai";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
   return (
@@ -24,73 +25,73 @@ const Dashboard = () => {
           Open drawer
         </label>
       </div>
-      <div className="  drawer-side">
+      <div className="drawer-side">
         <label
           htmlFor="my-drawer-2"
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu p-4 w-80 min-h-full pt-10 bg-yellow-500 text-base-content">
+        <ul className="menu p-4 w-80 min-h-full pt-10 bg-[#D1A054] text-base-content">
           {/* Sidebar content here */}
           <li>
-            <Link>
+            <NavLink>
               <FaHome></FaHome>
               USER HOME
-            </Link>
+            </NavLink>
           </li>
 
           <li>
-            <Link>
+            <NavLink to={"/dashboard/mycart"}>
               <FaShoppingCart> </FaShoppingCart>
               MY CART
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link>
+            <NavLink>
               <FaWallet></FaWallet>
               PAYMENT HISTORY
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link>
+            <NavLink>
               <FaCalendar></FaCalendar>
               RESERVATION
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link>
+            <NavLink>
               <FaBookTanakh></FaBookTanakh>
               MY BOOKINGS
-            </Link>
+            </NavLink>
           </li>
           <div className="divider"> </div>
           {/*  */}
           <li>
-            <Link to={"/"}>
+            <NavLink to={"/"}>
               <FaHome></FaHome>
               HOME
-            </Link>
+            </NavLink>
           </li>
           {/*  */}
           <li>
-            <Link to={"/menu"}>
+            <NavLink to={"/menu"}>
               <TiThMenu></TiThMenu>
               MENU
-            </Link>
+            </NavLink>
           </li>
           {/*  */}
           <li>
-            <Link to={"/"}>
+            <NavLink to={"/"}>
               <FaBagShopping></FaBagShopping>
               SHOP
-            </Link>
+            </NavLink>
           </li>
           {/*  */}
           <li>
-            <Link to={"/"}>
+            <NavLink to={"/"}>
               <AiOutlineMail></AiOutlineMail>
               CONTACT
-            </Link>
+            </NavLink>
           </li>
           {/*  */}
         </ul>

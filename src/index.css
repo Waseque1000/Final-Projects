@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.drawer-side a {
+  background-color: transparent !important;
+}
+
+.drawer-side li {
+  font-size: 17px;
+  margin-top: 10px;
+}
