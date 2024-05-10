@@ -45,6 +45,7 @@ const FoodCard = ({ item }) => {
               title: "Food Added On the Cart ",
               text: "Welcome to Bistro Boss",
               icon: "success",
+              timer: 600,
             });
           }
         });
