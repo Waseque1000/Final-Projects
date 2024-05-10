@@ -11,6 +11,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import img from "../../assets/others/authentication1.png";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 //
 
 const Login = () => {
@@ -143,6 +144,7 @@ const Login = () => {
                 </Link>
               </small>
             </p>
+            <SocialLogin></SocialLogin>
           </form>
         </div>
       </div>

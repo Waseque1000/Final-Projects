@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 //
 const SignUp = () => {
@@ -34,8 +35,22 @@ const SignUp = () => {
         });
         updateProfileUser(data.name, data.photoUrl)
           .then(() => {
-            console.log("user updated");
-            navigate("/");
+            const savedUser = { name: data.name, email: data.email };
+            fetch(`http://localhost:5000/users`, {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(savedUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.insertedId) {
+                  reset();
+                  console.log("user updated");
+                  navigate("/");
+                }
+              });
           })
           .catch((error) => {
             console.log(error);
@@ -45,6 +60,9 @@ const SignUp = () => {
         console.log(error.massage);
       });
   };
+
+  // google
+
   return (
     <>
       <Helmet>
@@ -128,6 +146,7 @@ const SignUp = () => {
                   </Link>
                 </small>
               </p>
+              <SocialLogin></SocialLogin>
             </form>
           </div>
         </div>
