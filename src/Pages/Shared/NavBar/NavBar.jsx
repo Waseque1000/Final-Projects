@@ -13,7 +13,7 @@ const NavBar = () => {
 
   const [cart] = useCart();
 
-  console.log(cart.length);
+  // console.log(cart.length);
   //
   const handleLogOut = () => {
     logOut()

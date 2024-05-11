@@ -29,7 +29,8 @@ const Dashboard = () => {
   const [cart] = useCart();
 
   // TODO:
-  const isAdmin = useAdmin();
+  // const isAdmin = true;
+  const [isAdmin] = useAdmin();
 
   //
   return (
