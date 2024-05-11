@@ -23,12 +23,13 @@ import useCart from "../Hooks/useCart";
 import { GiForkKnifeSpoon } from "react-icons/gi";
 import { HiMiniBars3CenterLeft } from "react-icons/hi2";
 import { MdBook } from "react-icons/md";
+import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
   const [cart] = useCart();
 
   // TODO:
-  const isAdmin = true;
+  const isAdmin = useAdmin();
 
   //
   return (
