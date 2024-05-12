@@ -2,9 +2,22 @@ import React from "react";
 import SectionTitle from "../../../Components/SectionsTitle/SectionTitle";
 
 import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
+// ! img hosting
+
+const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
 const AddItem = () => {
   //
+
+  const axiosSecure = useAxiosSecure();
+  //
+  const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
+
+  // console.log(img_hosting_token);
+  //
+
   const {
     register,
     handleSubmit,
@@ -15,10 +28,47 @@ const AddItem = () => {
   //
 
   const onSubmit = (data) => {
-    reset();
-    console.log(data);
+    const formData = new FormData();
+    formData.append("image", data.image[0]);
+
+    fetch(img_hosting_url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgResponse) => {
+        if (imgResponse.success) {
+          const imgUrl = imgResponse.data.display_url;
+          const { name, price, category, recipe } = data;
+
+          const newItem = {
+            name,
+            price: parseFloat(price),
+            category,
+            recipe,
+            image: imgUrl,
+          };
+
+          console.log(newItem);
+          axiosSecure.post(`/menu`, newItem).then((data) => {
+            console.log("after posting new menu item", data.data);
+            // reset();
+            //TODO:
+            if (data.data.insertedId) {
+              Swal.fire({
+                icon: "success",
+                title: "Item Added",
+                // showConfirmButton: false,
+                timer: 1000,
+              });
+            }
+          });
+        }
+      });
+
+    // console.log(data);
   };
-  console.log(errors);
+  // console.log(errors);
   return (
     <div className="w-full pl-12">
       <SectionTitle
@@ -33,7 +83,7 @@ const AddItem = () => {
             </p>
           </div>
           <input
-            {...register("recipe", { required: true })}
+            {...register("name", { required: true })}
             type="text"
             placeholder="Type here"
             className="input input-bordered w-full "
@@ -53,6 +103,7 @@ const AddItem = () => {
             <option>Dessart</option>
             <option>Salad</option>
             <option>Drings</option>
+            <option>Deshi</option>
           </select>
 
           {/*  */}
@@ -76,7 +127,7 @@ const AddItem = () => {
             <span className="label-text">Recipe Details</span>
           </div>
           <textarea
-            {...register("details", { required: true })}
+            {...register("recipe", { required: true })}
             className="textarea textarea-bordered h-24"
             placeholder="Recipe Details"
           ></textarea>

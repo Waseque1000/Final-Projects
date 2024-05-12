@@ -70,7 +70,7 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/dashboard/manage"}>
+                <NavLink to={"/dashboard/manageitems"}>
                   <HiMiniBars3CenterLeft></HiMiniBars3CenterLeft>
                   MANAGE ITEMS
                 </NavLink>
