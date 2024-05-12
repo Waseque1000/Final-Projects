@@ -42,9 +42,9 @@ const FoodCard = ({ item }) => {
             // TODO:  refetch to update the cart product
             refetch();
             Swal.fire({
+              position: "top-end",
               title: "Food Added On the Cart ",
-              text: "Welcome to Bistro Boss",
-              icon: "success",
+              // icon: "success",
               timer: 600,
             });
           }

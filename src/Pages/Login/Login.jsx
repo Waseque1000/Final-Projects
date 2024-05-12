@@ -43,6 +43,7 @@ const Login = () => {
           title: "Login Successful",
           text: "That thing is still around?",
           icon: "success",
+          timer: 800,
         });
 
         // ? navigate

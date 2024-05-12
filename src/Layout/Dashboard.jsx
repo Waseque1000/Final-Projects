@@ -91,7 +91,7 @@ const Dashboard = () => {
           ) : (
             <>
               <li>
-                <NavLink>
+                <NavLink to={"/"}>
                   <FaHome></FaHome>
                   USER HOME
                 </NavLink>
@@ -107,19 +107,19 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink>
+                <NavLink to={"/payment"}>
                   <FaWallet></FaWallet>
                   PAYMENT HISTORY
                 </NavLink>
               </li>
               <li>
-                <NavLink>
+                <NavLink to={"/"}>
                   <FaCalendar></FaCalendar>
                   RESERVATION
                 </NavLink>
               </li>
               <li>
-                <NavLink>
+                <NavLink to={"/"}>
                   <FaBookTanakh></FaBookTanakh>
                   MY BOOKINGS
                 </NavLink>
