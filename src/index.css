@@ -10,3 +10,11 @@
   font-size: 17px;
   margin-top: 10px;
 }
+
+.payment {
+  /* color: rgb(243, 241, 241) !important; */
+  background: rgb(160, 150, 248) !important;
+  padding: 30px;
+  font-size: 44px !important;
+  font-weight: bolder !important;
+}

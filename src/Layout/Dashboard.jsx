@@ -107,7 +107,7 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/payment"}>
+                <NavLink to={"/dashboard/payment"}>
                   <FaWallet></FaWallet>
                   PAYMENT HISTORY
                 </NavLink>
@@ -144,7 +144,7 @@ const Dashboard = () => {
           </li>
           {/*  */}
           <li>
-            <NavLink to={"/"}>
+            <NavLink to={"/order"}>
               <FaBagShopping></FaBagShopping>
               SHOP
             </NavLink>
