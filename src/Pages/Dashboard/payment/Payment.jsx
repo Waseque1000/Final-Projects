@@ -17,10 +17,12 @@ const Payment = () => {
         subHeading={"Please Payment "}
         heading={"Payment"}
       ></SectionTitle>
-      <h2 className="text-3xl">teka to teka tumi koi </h2>
-      <Elements stripe={stripePromise}>
-        <CheckoutForm price={price}></CheckoutForm>
-      </Elements>
+
+      <div className="">
+        <Elements stripe={stripePromise}>
+          <CheckoutForm price={price} cart={cart}></CheckoutForm>
+        </Elements>
+      </div>
     </div>
   );
 };

@@ -15,7 +15,8 @@
  * display confirm  error
  * display confirm card success
  * TODO:
- *  do things after payment
+ * # do things after payment
+ *
  *
  *
  *

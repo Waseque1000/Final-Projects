@@ -13,8 +13,17 @@
 
 .payment {
   /* color: rgb(243, 241, 241) !important; */
-  background: rgb(160, 150, 248) !important;
+
+  background: rgb(3, 158, 3) !important;
+  /* background: rgb(114, 106, 160) !important; */
   padding: 30px;
   font-size: 44px !important;
   font-weight: bolder !important;
+  display: block;
+  margin: 10px 0 20px 0;
+  max-width: 500px;
+  padding: 10px 14px;
+  box-shadow: rgba(50, 50, 93, 0.14902) 0px 1px 3px,
+    rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
+  border-radius: 4px;
 }

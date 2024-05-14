@@ -2,6 +2,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 
+//  base url bahire niye gasi
+
 const axiosSecure = axios.create({
   baseURL: "http://localhost:5000",
 });
@@ -29,10 +31,13 @@ const useAxiosSecure = () => {
       return response;
     },
     async (error) => {
-      const status = error.response.status;
+      // const status = error.response.status;
       // console.log('status error in the interceptor', status);
       // for 401 or 403 logout the user and move the user to the login
-      if (status === 401 || status === 403) {
+      if (
+        (error.response && error.response.status === 401) ||
+        error.response.status === 403
+      ) {
         await logOut();
 
         //TODO:
@@ -41,6 +46,7 @@ const useAxiosSecure = () => {
       return Promise.reject(error);
     }
   );
+  [logOut, navigate];
 
   return axiosSecure;
 };
