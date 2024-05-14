@@ -36,7 +36,7 @@ const Dashboard = () => {
   return (
     <div className="drawer  lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col items-center justify-center">
+      <div className=" w-full drawer-content  flex-col items-center justify-center">
         <Outlet></Outlet>
         <label
           htmlFor="my-drawer-2"
@@ -91,7 +91,7 @@ const Dashboard = () => {
           ) : (
             <>
               <li>
-                <NavLink to={"/"}>
+                <NavLink to={"/dashboard/userhome"}>
                   <FaHome></FaHome>
                   USER HOME
                 </NavLink>
